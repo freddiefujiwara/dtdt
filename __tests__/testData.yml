@@ -1,0 +1,15 @@
+7+ items?:
+  'y':
+    buy shirts?:
+      'y':
+        buy ties?:
+          'y': 12%
+          'n': 7%
+      'n': 7%
+  'n':
+    buy shirts?:
+      'y':
+        buy ties?:
+          'y': 5%
+          'n': 0%
+      'n': 0%

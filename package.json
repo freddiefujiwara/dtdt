@@ -6,7 +6,7 @@
   "bin": "bin/index.js",
   "scripts": {
     "test": "npx jest",
-    "webpack": "npx webpack node_modules/markdown/lib/index.js --output-library-target window --output-library markdown -o src/markdown.min.js",
+    "webpack": "npx webpack node_modules/markdown/lib/index.js --output-library-target window --output-library markdown -o src/markdown.min.js && npx webpack node_modules/yaml/index.js --output-library-target window --output-library yaml -o src/yaml.min.js",
     "docs": "npx jsdoc2md -c jsdoc.conf.json src/dtdt.js  > DOCS.md"
   },
   "repository": {
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "markdown": "^0.5.0",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "yaml": "^1.10.0"
   }
 }
