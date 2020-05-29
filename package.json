@@ -1,0 +1,43 @@
+{
+  "name": "dtdt",
+  "version": "0.0.1",
+  "description": "A test case generator from a decision tree to decision table.",
+  "main": "src/dtdt.js",
+  "bin": "bin/index.js",
+  "scripts": {
+    "test": "npx jest",
+    "webpack": "npx webpack node_modules/markdown/lib/index.js --output-library-target window --output-library markdown -o src/markdown.min.js",
+    "docs": "npx jsdoc2md -c jsdoc.conf.json src/dtdt.js  > DOCS.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freddiefujiwara/dtdt.git"
+  },
+  "keywords": [
+    "testing-tools",
+    "testcase-generator",
+    "decision-trees",
+    "decisiontable",
+    "decision-tree"
+  ],
+  "author": {
+    "name": "Fumikazu Fujiwara",
+    "email": "npm@ze.gs",
+    "url": "http://freddiefujiwara.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freddiefujiwara/dtdt/issues"
+  },
+  "homepage": "https://freddiefujiwara.github.io/dtdt/",
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "jsdoc-to-markdown": "^5.0.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "markdown": "^0.5.0",
+    "minimist": "^1.2.5"
+  }
+}
