@@ -1,0 +1,82 @@
+<h1>Playground</h1>
+<h2>Input script</h2>
+<textarea id="inputscript" style="margin: 0px; width: 100%; height: 700px;">
+</textarea>
+<p style="margin: 0px; width: 100%; height: 100%;">
+   <button id="render" style="margin: 0px; width: 80%; height: 100%;">GO</button>
+</p>
+<h2>Diagram</h2>
+<div id="diagram" style="margin: 0px; width: 100%; height: 100%;background-color: transparent;"></div>
+<h2>Transitions</h2>
+<div id="transitions" style="margin: 0px; width: 100%; height: 100%;"></div>
+<h2 id="case">N switch test cases</h2>
+<div id="one" style="margin: 0px; width: 100%; height: 100%;"></div>
+<h2 id="matrix">N switch matrix</h2>
+<div id="onematrix" style="margin: 0px; width: 100%; height: 100%;"></div>
+<script src="https://freddiefujiwara.github.io/dtdt/src/dtdt.js"></script>
+<script src="https://freddiefujiwara.github.io/dtdt/src/smcat.min.js"></script>
+<script src="https://code.jquery.com/jquery-git.min.js"></script>
+<script type="text/javascript">
+   //<![CDATA[
+$("#render").click(() => {
+    const inputscript = $("#inputscript").val();
+    // url change
+
+    if (!(queries["g"] && queries["g"].length > 0)) {
+        window.history.pushState("", "", "https://freddiefujiwara.github.io/dtdt/?i=" + encodeURIComponent(inputscript) + "#inputscript");
+    }
+
+    $("#diagram").html(smcat.render(inputscript));
+    const s = new dtdt(smcat);
+    const nSwitchCoverage = s.setContents(inputscript)
+        .initialize()
+        .nSwitchCoverage($("#switch").val());
+
+    let output = new Array();
+    const log = console.log;
+    console.log = function(line) {
+        output.push(line);
+    };
+
+    s.printTransitions();
+    $("#transitions").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
+
+    output = new Array();
+    s.printNSwitch(nSwitchCoverage);
+    $("#one").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
+    $("#case").text($("#switch").val() + " Switch test cases");
+
+    output = new Array();
+    s.printNSwitchMatrix(nSwitchCoverage);
+    $("#onematrix").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
+    $("#matrix").text($("#switch").val() + " Switch matrix");
+
+    console.log = log;
+
+});
+
+// for default inputscript 
+// ex) https://freddiefujiwara.github.io/dtdt/i=[url encoded inputscript]
+let queries = {};
+document.location.search.substr(1).split('&').forEach((q) => {
+    const i = q.split('=');
+    if (i.length > 1) {
+        queries[i[0].toString()] = decodeURIComponent(i[1].toString());
+    }
+});
+if (queries["i"] && queries["i"].length > 0) {
+    $("#inputscript").val(queries["i"]);
+}
+if (queries["g"] && queries["g"].length > 0) {
+    $.ajax({
+        url: 'https://api.github.com/gists/' + queries["g"],
+        type: 'GET',
+        dataType: 'jsonp'
+    }).then((gistdata) => {
+        $("#inputscript").val(gistdata.data.files[Object.keys(gistdata.data.files)[0]].content);
+    }, (e) => {
+        console.err(e);
+    });
+}
+   //]]>
+</script>

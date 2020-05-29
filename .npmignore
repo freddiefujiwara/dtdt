@@ -1,0 +1,7 @@
+_config.yml
+DOCS.md
+.github/
+_includes/
+jsdoc.conf.json
+__tests__/
+dist/
