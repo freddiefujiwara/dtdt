@@ -1,0 +1,17 @@
+|#|Conditions|Action|
+|:--|:--|:--|
+|1|Rank? equals Silver and Charge amount? equals 3,000JPY|Additional 1% discount|
+|2|Rank? equals Silver and Charge amount? equals 5,000JPY and Win the coupon? equals y|Additional 2% discount and Get counpon|
+|3|Rank? equals Silver and Charge amount? equals 5,000JPY and Win the coupon? equals n|Additional 2% discount|
+|4|Rank? equals Silver and Charge amount? equals 10,000JPY and Win the coupon? equals y|Additional 4% discount and Get counpon|
+|5|Rank? equals Silver and Charge amount? equals 10,000JPY and Win the coupon? equals n|Additional 4% discount|
+|6|Rank? equals Gold and Charge amount? equals 3,000JPY|Additional 3% discount|
+|7|Rank? equals Gold and Charge amount? equals 5,000JPY and Win the coupon? equals y|Additional 5% discount and Get counpon|
+|8|Rank? equals Gold and Charge amount? equals 5,000JPY and Win the coupon? equals n|Additional 5% discount|
+|9|Rank? equals Gold and Charge amount? equals 10,000JPY and Win the coupon? equals y|Additional 10% discount and Get counpon|
+|10|Rank? equals Gold and Charge amount? equals 10,000JPY and Win the coupon? equals n|Additional 10% discount|
+|11|Rank? equals Black and Charge amount? equals 3,000JPY|Additional 5% discount|
+|12|Rank? equals Black and Charge amount? equals 5,000JPY and Win the coupon? equals y|Additional 7% discount and Get counpon|
+|13|Rank? equals Black and Charge amount? equals 5,000JPY and Win the coupon? equals n|Additional 7% discount|
+|14|Rank? equals Black and Charge amount? equals 15,000JPY and Win the coupon? equals y|Additional 15% discount and Get counpon|
+|15|Rank? equals Black and Charge amount? equals 15,000JPY and Win the coupon? equals n|Additional 15% discount|

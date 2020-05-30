@@ -1,0 +1,46 @@
+Rank?:
+  Silver:
+    Charge amount?:
+      '3,000JPY': Additional 1% discount
+      '5,000JPY':
+        Win the coupon?:
+          'y':
+            - Additional 2% discount
+            - Get counpon
+          'n': Additional 2% discount
+      '10,000JPY':
+        Win the coupon?:
+          'y':
+            - Additional 4% discount
+            - Get counpon
+          'n': Additional 4% discount
+  Gold:
+    Charge amount?:
+      '3,000JPY': Additional 3% discount
+      '5,000JPY':
+        Win the coupon?:
+          'y':
+            - Additional 5% discount
+            - Get counpon
+          'n': Additional 5% discount
+      '10,000JPY':
+        Win the coupon?:
+          'y':
+            - Additional 10% discount
+            - Get counpon
+          'n': Additional 10% discount
+  Black:
+    Charge amount?:
+      '3,000JPY': Additional 5% discount
+      '5,000JPY':
+        Win the coupon?:
+          'y':
+            - Additional 7% discount
+            - Get counpon
+          'n': Additional 7% discount
+      '15,000JPY':
+        Win the coupon?:
+          'y':
+            - Additional 15% discount
+            - Get counpon
+          'n': Additional 15% discount

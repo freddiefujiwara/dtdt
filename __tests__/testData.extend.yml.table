@@ -1,0 +1,14 @@
+||1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|
+|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
+|Rank?|Silver|Silver|Silver|Silver|Silver|Gold|Gold|Gold|Gold|Gold|Black|Black|Black|Black|Black|
+|Charge amount?|3,000JPY|5,000JPY|5,000JPY|10,000JPY|10,000JPY|3,000JPY|5,000JPY|5,000JPY|10,000JPY|10,000JPY|3,000JPY|5,000JPY|5,000JPY|15,000JPY|15,000JPY|
+|Win the coupon?|-|y|n|y|n|-|y|n|y|n|-|y|n|y|n|
+|Additional 1% discount|x|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|Additional 2% discount|-|x|x|-|-|-|-|-|-|-|-|-|-|-|-|
+|Get counpon|-|x|-|x|-|-|x|-|x|-|-|x|-|x|-|
+|Additional 4% discount|-|-|-|x|x|-|-|-|-|-|-|-|-|-|-|
+|Additional 3% discount|-|-|-|-|-|x|-|-|-|-|-|-|-|-|-|
+|Additional 5% discount|-|-|-|-|-|-|x|x|-|-|x|-|-|-|-|
+|Additional 10% discount|-|-|-|-|-|-|-|-|x|x|-|-|-|-|-|
+|Additional 7% discount|-|-|-|-|-|-|-|-|-|-|-|x|x|-|-|
+|Additional 15% discount|-|-|-|-|-|-|-|-|-|-|-|-|-|x|x|
