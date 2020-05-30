@@ -51,6 +51,81 @@ describe('Dtdt', () => {
         }
       }
     });
+    d.setContents(fs.readFileSync('__tests__/testData.extend.yml','utf8'))
+      .initialize();
+    expect(d.tree).toStrictEqual({
+      "Rank?":{
+        "Silver":{
+          "Charge amount?":{
+            "3,000JPY":"Additional 1% discount",
+            "5,000JPY":{
+              "Win the coupon?":{
+                "y":[
+                  "Additional 2% discount",
+                  "Get counpon"
+                ],
+                "n":"Additional 2% discount"
+              }
+            },
+            "10,000JPY":{
+              "Win the coupon?":{
+                "y":[
+                  "Additional 4% discount",
+                  "Get counpon"
+                ],
+                "n":"Additional 4% discount"
+              }
+            }
+          }
+        },
+        "Gold":{
+          "Charge amount?":{
+            "3,000JPY":"Additional 3% discount",
+            "5,000JPY":{
+              "Win the coupon?":{
+                "y":[
+                  "Additional 5% discount",
+                  "Get counpon"
+                ],
+                "n":"Additional 5% discount"
+              }
+            },
+            "10,000JPY":{
+              "Win the coupon?":{
+                "y":[
+                  "Additional 10% discount",
+                  "Get counpon"
+                ],
+                "n":"Additional 10% discount"
+              }
+            }
+          }
+        },
+        "Black":{
+          "Charge amount?":{
+            "3,000JPY":"Additional 5% discount",
+            "5,000JPY":{
+              "Win the coupon?":{
+                "y":[
+                  "Additional 7% discount",
+                  "Get counpon"
+                ],
+                "n":"Additional 7% discount"
+              }
+            },
+            "15,000JPY":{
+              "Win the coupon?":{
+                "y":[
+                  "Additional 15% discount",
+                  "Get counpon"
+                ],
+                "n":"Additional 15% discount"
+              }
+            }
+          }
+        }
+      }
+    });
   });
   it(' printXXX() : can print decision table from thid.combinations', () => {
     const d = new Dtdt(yaml);
@@ -63,13 +138,25 @@ describe('Dtdt', () => {
       output.push(line);
     };
 
-    //trasition
+    //nomal type
     d.printTable();
     expect(output.join("\n")).toBe(fs.readFileSync('__tests__/testData.yml.table','utf8').trim());
 
     output = new Array();
     d.print();
     expect(output.join("\n")).toBe(fs.readFileSync('__tests__/testData.yml.cases','utf8').trim());
+
+    //extended type
+    d.setContents(fs.readFileSync('__tests__/testData.extend.yml','utf8'));
+    d.initialize();
+
+    output = new Array();
+    d.printTable();
+    expect(output.join("\n")).toBe(fs.readFileSync('__tests__/testData.extend.yml.table','utf8').trim());
+
+    output = new Array();
+    d.print();
+    expect(output.join("\n")).toBe(fs.readFileSync('__tests__/testData.extend.yml.cases','utf8').trim());
 
     console.log = log;
   });
@@ -102,6 +189,26 @@ describe('Dtdt', () => {
       ["n", "y", "y", "-", "-", "x", "-"],
       ["n", "y", "n", "-", "-", "-", "x"],
       ["n", "n", "-", "-", "-", "-", "x"]
+    ]);
+    d.setContents(fs.readFileSync('__tests__/testData.extend.yml','utf8'))
+      .initialize();
+                               //1%, 2%, GC, 4%, 3%, 5%,10%, 7%,15%
+    expect(d.matrix).toStrictEqual([
+      ['Silver','3,000JPY' ,'-','x','-','-','-','-','-','-','-','-'],
+      ['Silver','5,000JPY' ,'y','-','x','x','-','-','-','-','-','-'],
+      ['Silver','5,000JPY' ,'n','-','x','-','-','-','-','-','-','-'],
+      ['Silver','10,000JPY','y','-','-','x','x','-','-','-','-','-'],
+      ['Silver','10,000JPY','n','-','-','-','x','-','-','-','-','-'],
+      ['Gold',  '3,000JPY' ,'-','-','-','-','-','x','-','-','-','-'],
+      ['Gold',  '5,000JPY' ,'y','-','-','x','-','-','x','-','-','-'],
+      ['Gold',  '5,000JPY', 'n','-','-','-','-','-','x','-','-','-'],
+      ['Gold',  '10,000JPY','y','-','-','x','-','-','-','x','-','-'],
+      ['Gold',  '10,000JPY','n','-','-','-','-','-','-','x','-','-'],
+      ['Black', '3,000JPY', '-','-','-','-','-','-','x','-','-','-'],
+      ['Black', '5,000JPY', 'y','-','-','x','-','-','-','-','x','-'],
+      ['Black', '5,000JPY', 'n','-','-','-','-','-','-','-','x','-'],
+      ['Black', '15,000JPY','y','-','-','x','-','-','-','-','-','x'],
+      ['Black', '15,000JPY','n','-','-','-','-','-','-','-','-','x']
     ]);
   });
 });

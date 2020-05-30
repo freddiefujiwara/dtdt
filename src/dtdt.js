@@ -59,7 +59,7 @@ class Dtdt {
         }
       });
       this.actions.forEach((action) => {
-        if(combination.action === action){
+        if(combination.actions.indexOf(action) !== -1){
           column.push("x");
         }else{
           column.push("-");
@@ -117,7 +117,7 @@ class Dtdt {
     output.push(`|${header.join("|")}|`);
     output.push(`|${header.map(()=>"").join(":--|")}:--|`);
     this.combinations.forEach((combination,n) => {
-      output.push(`|${n}|${combination.conditions.map((c,i) => `${this.conditions[i]} equals ${c}`).join(" and ")}|${combination.action}|`);
+      output.push(`|${n+1}|${combination.conditions.map((c,i) => `${this.conditions[i]} equals ${c}`).join(" and ")}|${combination.actions.join(" and ")}|`);
     });
     console.log(output.join("\n"));
   }
@@ -138,19 +138,24 @@ class Dtdt {
     depth = depth || 0;
     history = history || [];
     //leaf
-    if(typeof tree !== "object"){
+    if(Array.isArray(tree) || typeof tree !== "object"){
       if(depth % 2 !== 0){
         throw new Error("leaf'depth should be even");
       }
-      if(this.actions.indexOf(tree) === -1){
-        this.actions.push(tree);
-      }
-      this.combinations.push({conditions:history,action:tree})
+      const actions = Array.isArray(tree) ? tree : [tree];
+      actions.forEach((action) => {
+        if(this.actions.indexOf(action) === -1){
+          this.actions.push(action);
+        }
+      });
+      this.combinations.push({ conditions:history, actions:actions })
       return;
     }
     //node
     if(depth % 2 === 0){
       if(Object.keys(tree).length !== 1){
+        console.log(`${depth}`);
+        console.log(tree);
         throw new Error("node should have only 1 key");
       }
       const key = Object.keys(tree)[0];
