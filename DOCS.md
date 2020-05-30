@@ -42,8 +42,12 @@ Overall flow is the following</p>
 ### dtdt.initialize() ⇒ [<code>Dtdt</code>](#Dtdt)
 <p>In this method, it aims to fill the following parameters</p>
 <ul>
-<li>this.tree</li>
+<li>this.tree from YAML</li>
+<li>this._parseTree()</li>
 <li>this.combinations</li>
+<li>this.conditions</li>
+<li>this.actions</li>
+<li>this.matrix</li>
 </ul>
 
 **Kind**: instance method of [<code>Dtdt</code>](#Dtdt)  

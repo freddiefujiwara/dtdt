@@ -34,8 +34,12 @@ class Dtdt {
    * @returns {Dtdt} this This object
    * @desc
    * In this method, it aims to fill the following parameters
-   * - this.tree
-   * - this.combinations
+   * - this.tree from YAML
+   * - this._parseTree()
+   *  - this.combinations
+   *  - this.conditions
+   *  - this.actions
+   * - this.matrix
    */
   initialize(){
     this._clean();
