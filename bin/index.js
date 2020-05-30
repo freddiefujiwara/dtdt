@@ -12,7 +12,7 @@ if (argv['_'].length < 1 || typeof argv['h'] !== 'undefined'){
   console.error(`Report bugs: ${pkg.bugs.url}`);
   console.error("================================================================================");
   console.error("");
-  console.error("Usage: dtdt <file> ");
+  console.error("Usage: dtdt [-h] <file> ");
   console.error("");
   process.exit(1);
 }
