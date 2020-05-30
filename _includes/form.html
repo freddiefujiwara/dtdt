@@ -23,7 +23,7 @@
 <h2>Table</h2>
 <div id="table" style="margin: 0px; width: 100%; height: 100%;"></div>
 <script src="https://freddiefujiwara.github.io/dtdt/src/dtdt.js"></script>
-<script src="https://freddiefujiwara.github.io/dtdt/src/smcat.min.js"></script>
+<script src="https://freddiefujiwara.github.io/dtdt/src/yaml.min.js"></script>
 <script src="https://code.jquery.com/jquery-git.min.js"></script>
 <script type="text/javascript">
    //<![CDATA[
@@ -34,9 +34,7 @@ $("#render").click(() => {
     if (!(queries["g"] && queries["g"].length > 0)) {
         window.history.pushState("", "", "https://freddiefujiwara.github.io/dtdt/?i=" + encodeURIComponent(inputscript) + "#inputscript");
     }
-
-    $("#diagram").html(smcat.render(inputscript));
-    const d = new Dtdt(smcat);
+    const d = new Dtdt(yaml);
     d.setContents(inputscript)
         .initialize();
 
@@ -46,7 +44,7 @@ $("#render").click(() => {
         output.push(line);
     };
 
-    s.printTable();
+    d.printTable();
     $("#table").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
     console.log = log;
 
