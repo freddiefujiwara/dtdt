@@ -1,6 +1,6 @@
 {
   "name": "dtdt",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A test case generator from a decision tree to decision table.",
   "main": "src/dtdt.js",
   "bin": "bin/index.js",
