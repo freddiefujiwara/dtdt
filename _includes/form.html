@@ -1,18 +1,27 @@
 <h1>Playground</h1>
 <h2>Input script</h2>
 <textarea id="inputscript" style="margin: 0px; width: 100%; height: 700px;">
+7+ items?:
+  'y':
+    buy shirts?:
+      'y':
+        buy ties?:
+          'y': 12%
+          'n': 7%
+      'n': 7%
+  'n':
+    buy shirts?:
+      'y':
+        buy ties?:
+          'y': 5%
+          'n': 0%
+      'n': 0%
 </textarea>
 <p style="margin: 0px; width: 100%; height: 100%;">
    <button id="render" style="margin: 0px; width: 80%; height: 100%;">GO</button>
 </p>
-<h2>Diagram</h2>
-<div id="diagram" style="margin: 0px; width: 100%; height: 100%;background-color: transparent;"></div>
-<h2>Transitions</h2>
-<div id="transitions" style="margin: 0px; width: 100%; height: 100%;"></div>
-<h2 id="case">N switch test cases</h2>
-<div id="one" style="margin: 0px; width: 100%; height: 100%;"></div>
-<h2 id="matrix">N switch matrix</h2>
-<div id="onematrix" style="margin: 0px; width: 100%; height: 100%;"></div>
+<h2>Table</h2>
+<div id="table" style="margin: 0px; width: 100%; height: 100%;"></div>
 <script src="https://freddiefujiwara.github.io/dtdt/src/dtdt.js"></script>
 <script src="https://freddiefujiwara.github.io/dtdt/src/smcat.min.js"></script>
 <script src="https://code.jquery.com/jquery-git.min.js"></script>
@@ -27,10 +36,9 @@ $("#render").click(() => {
     }
 
     $("#diagram").html(smcat.render(inputscript));
-    const s = new dtdt(smcat);
-    const nSwitchCoverage = s.setContents(inputscript)
-        .initialize()
-        .nSwitchCoverage($("#switch").val());
+    const d = new Dtdt(smcat);
+    d.setContents(inputscript)
+        .initialize();
 
     let output = new Array();
     const log = console.log;
@@ -38,24 +46,13 @@ $("#render").click(() => {
         output.push(line);
     };
 
-    s.printTransitions();
-    $("#transitions").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
-
-    output = new Array();
-    s.printNSwitch(nSwitchCoverage);
-    $("#one").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
-    $("#case").text($("#switch").val() + " Switch test cases");
-
-    output = new Array();
-    s.printNSwitchMatrix(nSwitchCoverage);
-    $("#onematrix").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
-    $("#matrix").text($("#switch").val() + " Switch matrix");
-
+    s.printTable();
+    $("#table").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
     console.log = log;
 
 });
 
-// for default inputscript 
+// for default inputscript
 // ex) https://freddiefujiwara.github.io/dtdt/i=[url encoded inputscript]
 let queries = {};
 document.location.search.substr(1).split('&').forEach((q) => {
