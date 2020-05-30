@@ -12,7 +12,7 @@ if (argv['_'].length < 1 || typeof argv['h'] !== 'undefined'){
   console.error(`Report bugs: ${pkg.bugs.url}`);
   console.error("================================================================================");
   console.error("");
-  console.error("Usage: dtdt [-h] <file> ");
+  console.error("Usage: dtdt [-h] <file> [-t <t|c (t:default)>]");
   console.error("");
   process.exit(1);
 }
@@ -21,5 +21,12 @@ const fs = require('fs');
 const Dtdt = require('../src/dtdt');
 const d = new Dtdt();
 d.setContents(require('fs').readFileSync(argv['_'][0],'utf8'))
-  .initialize()
-  .printTable();
+  .initialize();
+switch(argv['t']){
+  case "c":
+    d.print();
+    break;
+  default:
+    d.printTable();
+    break;
+}

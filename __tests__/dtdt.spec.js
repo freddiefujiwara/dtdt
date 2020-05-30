@@ -52,7 +52,7 @@ describe('Dtdt', () => {
       }
     });
   });
-  it(' printTable() : can print decision table from thid.combinations', () => {
+  it(' printXXX() : can print decision table from thid.combinations', () => {
     const d = new Dtdt(yaml);
     d.setContents(fs.readFileSync('__tests__/testData.yml','utf8'));
     expect(d.printTable).toBeInstanceOf(Function);
@@ -65,7 +65,12 @@ describe('Dtdt', () => {
 
     //trasition
     d.printTable();
-    expect(output.join("\n")).toBe(fs.readFileSync('__tests__/testData.yml.result','utf8').trim());
+    expect(output.join("\n")).toBe(fs.readFileSync('__tests__/testData.yml.table','utf8').trim());
+
+    output = new Array();
+    d.print();
+    expect(output.join("\n")).toBe(fs.readFileSync('__tests__/testData.yml.cases','utf8').trim());
+
     console.log = log;
   });
   it(' _clean() : can clean all parameters', () => {

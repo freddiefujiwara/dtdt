@@ -22,6 +22,8 @@
 </p>
 <h2>Decision Table</h2>
 <div id="table" style="margin: 0px; width: 100%; height: 100%;"></div>
+<h2>Test cases</h2>
+<div id="cases" style="margin: 0px; width: 100%; height: 100%;"></div>
 <script src="https://freddiefujiwara.github.io/dtdt/src/dtdt.js"></script>
 <script src="https://freddiefujiwara.github.io/dtdt/src/yaml.min.js"></script>
 <script src="https://freddiefujiwara.github.io/dtdt/src/markdown.min.js"></script>
@@ -47,6 +49,10 @@ $("#render").click(() => {
 
     d.printTable();
     $("#table").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
+
+    output = new Array();
+    d.print();
+    $("#cases").html(markdown.markdown.toHTML(output.join("\n"), "Maruku"));
     console.log = log;
 
 });

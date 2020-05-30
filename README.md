@@ -40,7 +40,7 @@ $ cat __tests__/testDataa.yml
       'n': 0%
 ```
 
-## Transition matrix
+## Decision table
 ```shell
 $ dtdt __tests__/testData.yml
 ```
@@ -54,5 +54,19 @@ $ dtdt __tests__/testData.yml
 |7%|-|x|x|-|-|-|
 |5%|-|-|-|x|-|-|
 |0%|-|-|-|-|x|x|
+
+## Test cases
+```shell
+$ dtdt __tests__/testData.yml -t c
+```
+
+|#|Conditions|Action|
+|:--|:--|:--|
+|0|7+ items? equals y and buy shirts? equals y and buy ties? equals y|12%|
+|1|7+ items? equals y and buy shirts? equals y and buy ties? equals n|7%|
+|2|7+ items? equals y and buy shirts? equals n|7%|
+|3|7+ items? equals n and buy shirts? equals y and buy ties? equals y|5%|
+|4|7+ items? equals n and buy shirts? equals y and buy ties? equals n|0%|
+|5|7+ items? equals n and buy shirts? equals n|0%|
 
 {% include form.html %}

@@ -1,9 +1,10 @@
 /**
  * @classdesc
- * This is a Dtdt class. It's a "S"tate "M"achine "T"est "C"ase generator inspired by https://note.com/yumotsuyo/n/nd3099b40dc1f
+ * This is a Dtdt class. It’s a A test case generator from a “D”ecision “T”ree to “D”ecision “T”able.
  * Overall flow is the following
  * - setContents(contents)
  * - initialize()
+ * - printTable()
  *
  */
 class Dtdt {
@@ -69,7 +70,7 @@ class Dtdt {
    * @public
    * @desc
    * In this method, it aims to print the following parameters
-   * - this.combinations
+   * - this.matrix
    */
   printTable(){
     if(this.matrix.length < 1){
@@ -78,23 +79,43 @@ class Dtdt {
     const key = this.conditions.concat(this.actions);
     const maxY = this.matrix[0].length;
     const maxX = this.matrix.length;
-    const matrix = new Array();
+    const output = new Array();
     const header = new Array();
     header.push("");
     for(let n = 1 ; n <= maxX ; n ++){
       header.push(n);
     }
-    matrix.push(`|${header.join("|")}|`);
-    matrix.push(`|${header.map(()=>"").join(":--|")}:--|`);
+    output.push(`|${header.join("|")}|`);
+    output.push(`|${header.map(()=>"").join(":--|")}:--|`);
     for(let y = 0 ; y < maxY ; y ++){
       const row = new Array();
       row.push(key[y]);
       for(let x = 0 ; x < maxX ; x ++){
         row.push(this.matrix[x][y]);
       }
-      matrix.push(`|${row.join("|")}|`);
+      output.push(`|${row.join("|")}|`);
     }
-    console.log(matrix.join("\n"));
+    console.log(output.join("\n"));
+  }
+  /**
+   * print test cases
+   * @public
+   * @desc
+   * In this method, it aims to print the following parameters
+   * - this.combinations
+   */
+  print(){
+    if(this.combinations.length < 1){
+      return;
+    }
+    const output = new Array();
+    const header = ["#","Conditions","Action"];
+    output.push(`|${header.join("|")}|`);
+    output.push(`|${header.map(()=>"").join(":--|")}:--|`);
+    this.combinations.forEach((combination,n) => {
+      output.push(`|${n}|${combination.conditions.map((c,i) => `${this.conditions[i]} equals ${c}`).join(" and ")}|${combination.action}|`);
+    });
+    console.log(output.join("\n"));
   }
   /**
    * PRIVATE:clean up all parameters
