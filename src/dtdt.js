@@ -70,7 +70,7 @@ class Dtdt {
    * @desc
    * In this method, it aims to print the following parameters
    * - this.combinations
-   */e
+   */
   printTable(){
     if(this.matrix.length < 1){
       return;
